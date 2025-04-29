@@ -1,0 +1,14 @@
+.title {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 40px;
+  }
+  &__header-link {
+    color: var(--color-dark);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+}

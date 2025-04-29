@@ -1,0 +1,107 @@
+.header__main-swiper {
+  background-repeat: no-repeat !important;
+  background-position: center;
+  background-size: cover !important;
+  height: 960px !important;
+}
+.header {
+  color: var(--color-light);
+  position: relative;
+  &__main {
+  }
+
+  &__top {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    padding: 30px var(--header-padding) 30px var(--header-padding);
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  &__top-title {
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  &__top-button {
+    color: var(--color-light);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 26px;
+    border-radius: 15px;
+    transition: all 0.3s;
+    @include hover {
+      background: white;
+      color: black;
+    }
+  }
+
+  &__main-swiper {
+    display: flex !important;
+    align-items: center;
+    justify-content: start;
+  }
+  &__main-info {
+    top: 5%;
+    position: relative;
+    left: 15%;
+  }
+
+  &__main-price {
+    font-size: var(--title-any-size);
+  }
+  &__main-function {
+    display: flex;
+    gap: 40px;
+    &__box,
+    &__speed {
+      display: flex;
+      gap: 5px;
+    }
+  }
+  &__main-name {
+    font-size: var(--title-size);
+  }
+
+  &__main-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px 15px 30px;
+    background-color: var(--color-light);
+    border-radius: 16px;
+    margin-top: 40px;
+    transition: hover 0.2s;
+    @include hover {
+      transform: scale(1.03);
+    }
+  }
+
+  &__main-str {
+  }
+
+  &__swiper-btns {
+    position: absolute;
+    top: 50%;
+    z-index: 100;
+    padding-inline: var(--header-padding);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &__custom-prev,
+  &__custom-next {
+    background-color: var(--color-light);
+    padding: 15px 26px;
+    border-radius: 30px;
+    &:disabled {
+      opacity: 0.5;
+      cursor: unset;
+    }
+  }
+}

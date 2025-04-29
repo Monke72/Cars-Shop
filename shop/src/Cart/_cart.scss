@@ -1,0 +1,76 @@
+.cart {
+  max-width: 320px;
+  border-radius: 30px;
+
+  &__header {
+    position: relative;
+    border-radius: 30px;
+
+    &-image {
+      border-radius: 17px 17px 0 0;
+      height: 200px;
+      width: 320px;
+    }
+    span {
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  &__footer {
+    background-color: var(--color-light);
+    border-radius: 0 0 17px 17px;
+    padding: 17px 30px 30px 30px;
+  }
+
+  &__footer-info {
+    border-bottom: 1px solid rgb(233, 233, 233);
+    &__description {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%; /* Укажите желаемую ширину */
+    }
+    &__name {
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  &__footer-equipment {
+    display: flex;
+    flex-direction: column;
+    &__list {
+      padding-block: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgb(233, 233, 233);
+    }
+    &__item {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  &__footer-price {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    align-items: center;
+    &__title {
+      font-size: 20px;
+    }
+  }
+
+  &__footer-open {
+    color: var(--color-blue);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+}

@@ -1,10 +1,4 @@
-export interface ICars {
-  name: string;
-  description: string;
-  price: number;
-  acceleration: number;
-  urlPhoto: string;
-}
+import { ICars } from "./Types/types";
 
 async function getCars(
   newUrl = "",

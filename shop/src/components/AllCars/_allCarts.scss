@@ -1,0 +1,36 @@
+.all {
+  background-color: #f9fbfc;
+  padding-top: 115px;
+
+  &__choice {
+    display: flex;
+    border-bottom: 1px solid rgb(233, 233, 233);
+  }
+
+  &__choise-recent,
+  &__choise-popular {
+    font-weight: 300;
+    font-family: var(--text-font);
+    padding-bottom: 15px;
+    border-bottom: 2px solid transparent;
+    @include hover {
+      border-bottom: 2px solid var(--color-blue);
+    }
+  }
+
+  &__choise-popular {
+    padding-inline: 30px;
+  }
+
+  &__recent-cart {
+    &__wrapper {
+      padding-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 35px;
+    }
+  }
+}
+.all__active {
+  border-bottom: 2px solid var(--color-blue);
+}

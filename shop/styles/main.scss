@@ -1,3 +1,5 @@
 @import "./base/reset", "./base/mixins.scss", "./base/fonts",
   "./base/defualt.scss", "./base/root";
-@import "./compoments/header";
+@import "../src/components//Header/header", "../src/components/Type/type",
+  "./../src/components/Titles/title", "./../src/components/AllCars/allCarts",
+  "./../src/Cart/cart";

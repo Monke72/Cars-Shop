@@ -1,0 +1,33 @@
+.type {
+  padding-top: 115px;
+
+  &__cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    border: 1px solid rgb(233, 233, 233);
+    padding-block: 40px;
+    border-radius: 35px;
+    @include hover {
+      .type__cart-image {
+        transform: scale(1.15);
+      }
+    }
+  }
+
+  &__wrapper {
+    gap: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 130px;
+  }
+  &__cart-image {
+    padding: 18px;
+    background-color: #f9fbfc;
+    border-radius: 50%;
+  }
+}
