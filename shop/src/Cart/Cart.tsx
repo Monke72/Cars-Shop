@@ -9,8 +9,6 @@ const Cart = ({ el }: { el: ICars }) => {
     <div className="cart">
       <div className="cart__header">
         <img className="cart__header-image" src={el.urlPhoto} alt="" />{" "}
-        <span className="">+++</span>
-        <span>Good Prive</span>
       </div>
       <div className="cart__footer">
         <div className="cart__footer-info">

@@ -1,0 +1,35 @@
+.finding {
+  background-image: url(./../src/components/Finding/Image/Background.png);
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 600px;
+  color: var(--color-light);
+  margin-top: 115px;
+
+  &__info {
+    position: relative;
+    top: 25%;
+  }
+
+  &__title {
+    font-weight: 300;
+    max-width: 700px;
+  }
+
+  &__button {
+    margin-top: 20px;
+    color: var(--color-light);
+    padding: 15px 75px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+    @include hover {
+      background-color: rgba(255, 255, 255, 0.8);
+      color: var(--color-dark);
+    }
+  }
+}

@@ -374,6 +374,18 @@ h3 {
   cursor: unset;
 }
 
+.header__loading-wrapper {
+  width: 100%;
+  height: 960px;
+  background-color: #f5f5f5;
+  z-index: 1000;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 37%, #f0f0f0 63%);
+  background-size: 400% 100%;
+  animation: shimmer 6s linear infinite;
+  position: relative;
+  overflow: hidden;
+}
+
 .type {
   padding-top: 115px;
 }
@@ -426,7 +438,7 @@ h3 {
 
 .all {
   background-color: #f9fbfc;
-  padding-top: 115px;
+  padding-block: 115px;
 }
 .all__choice {
   display: flex;
@@ -451,15 +463,16 @@ h3 {
 .all__choise-popular {
   padding-inline: 30px;
 }
-.all__recent-cart__wrapper {
+.all__active {
+  border-bottom: 2px solid var(--color-blue);
+}
+
+.all__cart-wrapper,
+.skeleton-wrapper {
   padding-top: 40px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 35px;
-}
-
-.all__active {
-  border-bottom: 2px solid var(--color-blue);
 }
 
 .cart {
@@ -530,4 +543,88 @@ h3 {
   display: flex;
   align-items: center;
   gap: 7px;
+}
+
+.choise__person {
+  display: flex;
+  padding-block: 115px;
+  align-items: center;
+  justify-content: space-between;
+}
+.choise__title {
+  max-width: 400px;
+}
+.choise__us-list {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+.choise__us-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.choise__us-image {
+  max-width: 60px;
+  max-height: 60px;
+}
+.finding {
+  background-image: url(./../src/components/Finding/Image/Background.png);
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 600px;
+  color: var(--color-light);
+  margin-top: 115px;
+}
+.finding__info {
+  position: relative;
+  top: 25%;
+}
+.finding__title {
+  font-weight: 300;
+  max-width: 700px;
+}
+.finding__button {
+  margin-top: 20px;
+  color: var(--color-light);
+  padding: 15px 75px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+@media (hover: hover) {
+  .finding__button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--color-dark);
+  }
+}
+@media (hover: none) {
+  .finding__button:active {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--color-dark);
+  }
+}
+
+.skeleton-card {
+  width: 100%;
+  height: 427px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #eeeeee 25%, #dddddd 37%, #eeeeee 63%);
+  background-size: 400% 100%;
+  animation: shimmer 6s linear infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400% 0;
+  }
+  100% {
+    background-position: 400% 0;
+  }
 }/*# sourceMappingURL=main.css.map */

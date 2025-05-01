@@ -14,6 +14,7 @@ import box from "./Icons/box.svg";
 
 const Header: FC = () => {
   const [cars, setCars] = useState<ICars[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -21,7 +22,12 @@ const Header: FC = () => {
   const headerLimit: string = "?page=1&limit=3";
 
   useEffect(() => {
-    getCars(headerLimit, setCars);
+    async function stayImage() {
+      setLoading(true);
+      await getCars(headerLimit, setCars);
+      setLoading(false);
+    }
+    stayImage();
   }, []);
   return (
     <section className="header">
@@ -43,39 +49,47 @@ const Header: FC = () => {
             <div className="header__top-title">BOXCARS</div>
             <button className="header__top-button">Submit Listing</button>
           </div>
-          {cars.map((el) => (
-            <SwiperSlide
-              className="header__main-swiper"
-              style={{
-                background: `url(${el.urlPhoto})`,
-                width: "100vw",
-              }}
-            >
-              <div className="header__main-info">
-                <div className="header__main-price">
-                  $
-                  {`${el.price.toString().slice(0, 2)},${el.price
-                    .toString()
-                    .slice(2)}`}
-                </div>
-                <div className="header__main-name">{el.name}</div>
-                <div className="header__main-function">
-                  <div className="header__main-function__speed">
-                    <img src={speed} alt="" /> {el.acceleration}s
+          {loading ? (
+            <div className="header__loading-wrapper">any</div>
+          ) : (
+            <>
+              {cars.map((el, i) => (
+                <SwiperSlide
+                  key={i}
+                  className="header__main-swiper"
+                  style={{
+                    background: `url(${el.urlPhoto})`,
+                    width: "100vw",
+                  }}
+                >
+                  <div className="header__main-info">
+                    <div className="header__main-price">
+                      $
+                      {`${el.price.toString().slice(0, 2)},${el.price
+                        .toString()
+                        .slice(2)}`}
+                    </div>
+                    <div className="header__main-name">{el.name}</div>
+                    <div className="header__main-function">
+                      <div className="header__main-function__speed">
+                        <img src={speed} alt="" /> {el.acceleration}s
+                      </div>
+                      <div className="header__main-function__box">
+                        <img src={box} alt="" /> automatic
+                      </div>
+                    </div>
+                    <button className="header__main-btn">
+                      Learn More
+                      <span className="header__main-str">
+                        <img src={strTop} alt="" />
+                      </span>
+                    </button>
                   </div>
-                  <div className="header__main-function__box">
-                    <img src={box} alt="" /> automatick
-                  </div>
-                </div>
-                <button className="header__main-btn">
-                  Learn More
-                  <span className="header__main-str">
-                    <img src={strTop} alt="" />
-                  </span>
-                </button>
-              </div>
-            </SwiperSlide>
-          ))}
+                </SwiperSlide>
+              ))}
+            </>
+          )}
+
           <div className="header__swiper-btns">
             <button ref={prevRef} className="header__custom-prev">
               <img src={strLeft} alt="" />

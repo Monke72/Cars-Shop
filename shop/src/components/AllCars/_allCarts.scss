@@ -1,6 +1,6 @@
 .all {
   background-color: #f9fbfc;
-  padding-top: 115px;
+  padding-block: 115px;
 
   &__choice {
     display: flex;
@@ -24,13 +24,16 @@
 
   &__recent-cart {
     &__wrapper {
-      padding-top: 40px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 35px;
     }
   }
 }
 .all__active {
   border-bottom: 2px solid var(--color-blue);
+}
+.all__cart-wrapper,
+.skeleton-wrapper {
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 35px;
 }

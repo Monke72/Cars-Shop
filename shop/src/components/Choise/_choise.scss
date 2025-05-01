@@ -1,0 +1,43 @@
+.choise {
+  &__person {
+    display: flex;
+    padding-block: 115px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__person-info {
+  }
+  &__title {
+    max-width: 400px;
+  }
+
+  &__person-image {
+  }
+
+  &__us {
+  }
+
+  &__us-list {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  &__us-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__us-image {
+    max-width: 60px;
+    max-height: 60px;
+  }
+
+  &__us-title {
+  }
+
+  &__us-text {
+  }
+}

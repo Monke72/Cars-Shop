@@ -20,7 +20,7 @@ const cartArray: ITypes[] = [
 const Type = () => {
   return (
     <section className="type container">
-      <Title name="Browse by Type" />
+      <Title name="All Types" />
       <div className="type__wrapper">
         {cartArray.map((el, i) => (
           <TypeCart key={i} name={el.name} img={el.img}></TypeCart>

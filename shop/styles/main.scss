@@ -1,5 +1,12 @@
+//base
 @import "./base/reset", "./base/mixins.scss", "./base/fonts",
   "./base/defualt.scss", "./base/root";
+
+//components
 @import "../src/components//Header/header", "../src/components/Type/type",
   "./../src/components/Titles/title", "./../src/components/AllCars/allCarts",
-  "./../src/Cart/cart";
+  "./../src/Cart/cart", "./../src/components/Choise/choise",
+  "./../src/components/Finding/finding";
+
+//tools
+@import "./../src/Skeleton/skeleton";
