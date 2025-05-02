@@ -13,10 +13,9 @@ const basketSlice = createSlice({
   initialState,
   reducers: {
     pushInBasket: (state, action: PayloadAction<number>) => {
-      if (state.arrayId.filter((el) => el === action.payload))
-        console.log(state.arrayId.filter((el) => el === action.payload));
-
-      state.arrayId.push(action.payload);
+      if (!state.arrayId.includes(action.payload)) {
+        state.arrayId.push(action.payload);
+      }
     },
     removeFromBasket: (state, action: PayloadAction<number>) => {
       state.arrayId = state.arrayId.filter((item) => item !== action.payload);

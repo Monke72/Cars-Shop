@@ -4,11 +4,11 @@ import hatch from "./icons/hatch.svg";
 import coupe from "./icons/coupe.png";
 import hybrid from "./icons/hubrid.png";
 import convert from "./icons/convert.png";
-import { ITypes } from "../../Types/types";
+import { ITypesCars } from "../../Types/types";
 import TypeCart from "./TypeCart";
 import Title from "../Titles/Title";
 
-const cartArray: ITypes[] = [
+const cartArray: ITypesCars[] = [
   { name: "suv", img: suv },
   { name: "sedan", img: sedan },
   { name: "hatch", img: hatch },

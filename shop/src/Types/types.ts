@@ -9,7 +9,7 @@ export interface ICars {
   details: string;
 }
 
-export interface ITypes {
+export interface ITypesCars {
   name: string;
   img: string;
 }

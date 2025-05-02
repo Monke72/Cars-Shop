@@ -1,6 +1,6 @@
-import { ITypes } from "../../Types/types";
+import { ITypesCars } from "../../Types/types";
 
-const TypeCart = ({ name, img }: ITypes) => {
+const TypeCart = ({ name, img }: ITypesCars) => {
   return (
     <div className="type__cart">
       <img src={img} alt="type__cart-image" className="type__cart-image" />

@@ -1,17 +1,11 @@
-import AllCars from "./components/AllCars/AllCars";
-import Choise from "./components/Choise/Choise";
-import Finding from "./components/Finding/Finding";
-import Header from "./components/Header/Header";
-import Type from "./components/Type/Type";
+import Basket from "./components/Basket/Basket";
+import HomePage from "./components/HomePage/HomePage";
 
 function App() {
   return (
     <>
-      <Header />
-      <Type />
-      <AllCars />
-      <Choise />
-      <Finding />
+      <HomePage />
+      <Basket />
     </>
   );
 }

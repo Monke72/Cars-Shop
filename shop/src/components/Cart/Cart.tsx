@@ -1,26 +1,30 @@
-import { ICars } from "../Types/types";
+import { ICars } from "../../Types/types";
 import speed from "./Icons/spped.svg";
 import fuel from "./Icons/fuel.svg";
 import box from "./Icons/box.svg";
-import strTop from "./../components/Header/Icons/strTop.svg";
+import strTop from "./../Header/Icons/strTop.svg";
 import { useState } from "react";
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
-import { RootState } from "../Store/store";
+import { RootState } from "../../Store/store";
 import { useDispatch } from "react-redux";
-import { pushInBasket } from "../Store/basket/basketSlice";
-import { removeFromBasket } from "../Store/basket/basketSlice";
+import { pushInBasket } from "../../Store/basket/basketSlice";
+import { removeFromBasket } from "../../Store/basket/basketSlice";
 
 const Cart = ({ el }: { el: ICars }) => {
   const basket = useSelector((state: RootState) => state.basket.arrayId);
+
   const dispatch = useDispatch();
   const [open, setOpen] = useState<boolean>(false);
+  console.log(basket);
+
   const showModal = () => {
     setOpen(true);
   };
   const handleCancel = (el: ICars) => {
     dispatch(removeFromBasket(el.id));
     console.log(el.id);
+    console.log(basket);
 
     setOpen(false);
   };

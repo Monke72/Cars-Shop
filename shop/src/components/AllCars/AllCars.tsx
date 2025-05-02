@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Title from "../Titles/Title";
 import getCars from "../../getCarsFunc";
 import { ICars } from "../../Types/types";
-import Cart from "../../Cart/Cart";
-import Skeleton from "../../Skeleton/Skeleton";
+import Cart from "../Cart/Cart";
+import Skeleton from "../Skeleton/Skeleton";
 
 const AllCars = () => {
   const [recentCars, setRecentCars] = useState<ICars[]>([]);

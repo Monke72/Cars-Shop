@@ -631,6 +631,7 @@ h3 {
   max-width: 60px;
   max-height: 60px;
 }
+
 .finding {
   background-image: url(./../src/components/Finding/Image/Background.png);
   position: relative;
