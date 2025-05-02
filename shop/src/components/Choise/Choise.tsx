@@ -18,8 +18,8 @@ const Choise = () => {
           />
           <p className="choise__person-info__text">
             Choose from thousands of vehicles from multiple brands and buy
-            online with Click & Drive, or visit us at one of our dealerships
-            today.
+            online with Click & Drive, <br /> or visit us at one of our
+            dealerships today.
           </p>
         </div>
         <div className="choise__person-image">

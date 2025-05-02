@@ -1,5 +1,4 @@
 import { FC } from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useState } from "react";
 import getCars from "../../getCarsFunc";
@@ -8,13 +7,22 @@ import { Navigation } from "swiper/modules";
 import { useRef } from "react";
 import strLeft from "./Icons/strLeft.svg";
 import strRight from "./Icons/strRight.svg";
-import strTop from "./Icons/strTop.svg";
+import basket from "./Icons/basket.png";
+
 import speed from "./Icons/speed.svg";
 import box from "./Icons/box.svg";
 
+import React, { useMemo } from "react";
+import { notification } from "antd";
+import type { NotificationArgsProps } from "antd";
+type NotificationPlacement = NotificationArgsProps["placement"];
+const Context = React.createContext({ name: "Default" });
+
 const Header: FC = () => {
+  const contextValue = useMemo(() => ({ name: "Ant Design" }), []);
   const [cars, setCars] = useState<ICars[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [submit, setSubmit] = useState<boolean>(false);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -29,8 +37,22 @@ const Header: FC = () => {
     }
     stayImage();
   }, []);
+  const [api, contextHolder] = notification.useNotification();
+  const openNotification = (placement: NotificationPlacement) => {
+    api.info({
+      message: `You Submit to Listing`,
+      description: (
+        <Context.Consumer>
+          {() => `Now new notifications will appear in the lower right corner.`}
+        </Context.Consumer>
+      ),
+      placement,
+    });
+    setSubmit(true);
+  };
   return (
     <section className="header">
+      <Context.Provider value={contextValue}>{contextHolder}</Context.Provider>
       <div className="header__main">
         <Swiper
           modules={[Navigation]}
@@ -47,10 +69,25 @@ const Header: FC = () => {
         >
           <div className="header__top">
             <div className="header__top-title">BOXCARS</div>
-            <button className="header__top-button">Submit Listing</button>
+            <div className="header__top-buttons">
+              <button className="button__header-basket">
+                <img
+                  className="button__header-basket__image"
+                  src={basket}
+                  alt=""
+                />
+              </button>
+              <button
+                onClick={() => openNotification("topLeft")}
+                className="header__top-button"
+                disabled={submit}
+              >
+                Submit Listing
+              </button>
+            </div>
           </div>
           {loading ? (
-            <div className="header__loading-wrapper">any</div>
+            <div className="header__loading-wrapper"></div>
           ) : (
             <>
               {cars.map((el, i) => (
@@ -78,12 +115,6 @@ const Header: FC = () => {
                         <img src={box} alt="" /> automatic
                       </div>
                     </div>
-                    <button className="header__main-btn">
-                      Learn More
-                      <span className="header__main-str">
-                        <img src={strTop} alt="" />
-                      </span>
-                    </button>
                   </div>
                 </SwiperSlide>
               ))}

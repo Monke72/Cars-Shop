@@ -9,6 +9,7 @@ async function getCars(
   try {
     const res = await fetch(fetchUrl);
     const data = await res.json();
+
     setState(data);
   } catch (e) {
     alert(e);

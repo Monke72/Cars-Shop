@@ -1,6 +1,38 @@
 .cart {
   max-width: 320px;
   border-radius: 30px;
+  &__modal {
+  }
+
+  &__modal-title {
+    font-size: 32px;
+    padding-bottom: 20px;
+  }
+
+  &__modal-image {
+    border-radius: 15px;
+  }
+
+  &__modal-info {
+    padding-top: 15px;
+    font-size: 22px;
+    line-height: 1.5;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    &__strong {
+      font-weight: 700;
+    }
+  }
+
+  &__modal-acc {
+    padding-top: 15px;
+    font-size: 18px;
+  }
+
+  &__modal-price {
+    padding-top: 30px;
+    font-size: 35px;
+  }
 
   &__header {
     position: relative;
@@ -72,5 +104,31 @@
     display: flex;
     align-items: center;
     gap: 7px;
+  }
+}
+.ant-btn {
+  font-size: 18px;
+  padding: 20px 15px;
+  margin-inline-start: 12px !important;
+}
+.cart {
+  &__modal-btns {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+  }
+  &__modal-cancel,
+  &__modal-add {
+    padding: 8px 20px;
+    border-radius: 10px;
+  }
+  &__modal-cancel {
+    border: 1px solid #a3a3a3;
+  }
+
+  &__modal-add {
+    background-color: var(--color-blue);
+    color: var(--color-light);
   }
 }

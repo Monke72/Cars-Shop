@@ -33,6 +33,11 @@
     padding: 12px 26px;
     border-radius: 15px;
     transition: all 0.3s;
+    &:disabled {
+      cursor: unset;
+      background: white;
+      color: black;
+    }
     @include hover {
       background: white;
       color: black;
@@ -47,7 +52,7 @@
   &__main-info {
     top: 5%;
     position: relative;
-    left: 15%;
+    left: 12%;
   }
 
   &__main-price {
@@ -115,4 +120,12 @@
   animation: shimmer 6s linear infinite;
   position: relative;
   overflow: hidden;
+}
+.header__top-buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  &__image {
+    width: 39px;
+  }
 }
