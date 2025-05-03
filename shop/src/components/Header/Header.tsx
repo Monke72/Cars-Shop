@@ -15,6 +15,7 @@ import box from "./Icons/box.svg";
 import React, { useMemo } from "react";
 import { notification } from "antd";
 import type { NotificationArgsProps } from "antd";
+import { Link } from "react-router-dom";
 type NotificationPlacement = NotificationArgsProps["placement"];
 const Context = React.createContext({ name: "Default" });
 
@@ -70,13 +71,15 @@ const Header: FC = () => {
           <div className="header__top">
             <div className="header__top-title">BOXCARS</div>
             <div className="header__top-buttons">
-              <button className="button__header-basket">
-                <img
-                  className="button__header-basket__image"
-                  src={basket}
-                  alt=""
-                />
-              </button>
+              <Link to={"/basket"}>
+                <button className="button__header-basket">
+                  <img
+                    className="button__header-basket__image"
+                    src={basket}
+                    alt=""
+                  />
+                </button>
+              </Link>
               <button
                 onClick={() => openNotification("topLeft")}
                 className="header__top-button"

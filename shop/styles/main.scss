@@ -5,8 +5,5 @@
 //components
 @import "../src/components//Header/header", "../src/components/Type/type",
   "./../src/components/Titles/title", "./../src/components/AllCars/allCarts",
-  "./../src/Cart/cart", "./../src/components/Choise/choise",
-  "./../src/components/Finding/finding";
-
-//tools
-@import "./../src/Skeleton/skeleton";
+  "./../src/components/Cart/cart", "./../src/components/Choise/choise",
+  "./../src/components/Finding/finding", "./../src/components/Skeleton/skeleton";

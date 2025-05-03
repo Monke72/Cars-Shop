@@ -7,8 +7,6 @@
 .header {
   color: var(--color-light);
   position: relative;
-  &__main {
-  }
 
   &__top {
     position: absolute;
@@ -83,9 +81,6 @@
     @include hover {
       transform: scale(1.03);
     }
-  }
-
-  &__main-str {
   }
 
   &__swiper-btns {
