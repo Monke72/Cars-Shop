@@ -14,6 +14,7 @@ const Basket = () => {
   const basket = useSelector((state: RootState) => state.basket.arrayId);
   const dispatch = useDispatch();
   const [basketCars, setBasketCars] = useState<ICars[]>([]);
+  const totalPrice = basketCars.reduce((acc, car) => acc + car.price, 0);
 
   const handleDelete = (el: ICars) => {
     dispatch(removeFromBasket(el.id));
@@ -37,7 +38,7 @@ const Basket = () => {
     <section className="basket container">
       <div className="basket__header">
         <Link to={"/"}>
-          <button>
+          <button className="basket__back-btn">
             <span>
               <img src={strLeft} alt="" />
             </span>
@@ -68,6 +69,14 @@ const Basket = () => {
                 </button>
               </li>
             ))}
+            <div className="basket__cart-info">
+              <div className="basket__cart-total">
+                Total Price : {totalPrice}$
+              </div>
+              <Link to={"error"}>
+                <button className="basket__cart-buy">Buy Now</button>
+              </Link>
+            </div>
           </ul>
         )}
       </div>
