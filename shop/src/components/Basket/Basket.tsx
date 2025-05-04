@@ -6,12 +6,18 @@ import strLeft from "./../Header/Icons/strLeft.svg";
 import { ICars } from "../../Types/types";
 import { useEffect, useState } from "react";
 import getCars from "../../getCarsFunc";
+import { useDispatch } from "react-redux";
+import { removeFromBasket } from "../../Store/basket/basketSlice";
 
 const Basket = () => {
   const [cars, setCars] = useState<ICars[]>([]);
   const basket = useSelector((state: RootState) => state.basket.arrayId);
+  const dispatch = useDispatch();
   const [basketCars, setBasketCars] = useState<ICars[]>([]);
-  console.log(basket.length);
+
+  const handleDelete = (el: ICars) => {
+    dispatch(removeFromBasket(el.id));
+  };
 
   useEffect(() => {
     async function getCarInBasket() {
@@ -53,7 +59,13 @@ const Basket = () => {
                   alt=""
                 />
                 <h5 className="basket__cart-name">{cart.name}</h5>
-                <h4 className="basket__cart-price">{cart.price}</h4>
+                <h4 className="basket__cart-price">{cart.price}$</h4>
+                <button
+                  className="basket__cart-del"
+                  onClick={() => handleDelete(cart)}
+                >
+                  Delete from basket
+                </button>
               </li>
             ))}
           </ul>
