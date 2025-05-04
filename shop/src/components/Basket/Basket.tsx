@@ -1,69 +1,60 @@
-import { useSelector } from "react-redux";
-import { RootState } from "./../../Store/store";
-
-import { Link } from "react-router-dom";
-import strLeft from "./../Header/Icons/strLeft.svg";
-import { ICars } from "../../Types/types";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../Store/store";
 import { useEffect, useState } from "react";
-import getCars from "../../getCarsFunc";
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+
 import { removeFromBasket } from "../../Store/basket/basketSlice";
+import { ICars } from "../../Types/types";
+import strLeft from "../Header/Icons/strLeft.svg";
 
 const Basket = () => {
-  const [cars, setCars] = useState<ICars[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
   const basket = useSelector((state: RootState) => state.basket.arrayId);
-  const dispatch = useDispatch();
+  const allCars = useSelector((state: RootState) => state.cars.all);
   const [basketCars, setBasketCars] = useState<ICars[]>([]);
+
   const totalPrice = basketCars.reduce((acc, car) => acc + car.price, 0);
 
-  const handleDelete = (el: ICars) => {
-    dispatch(removeFromBasket(el.id));
+  useEffect(() => {
+    const selected = allCars.filter((car) => basket.includes(car.id));
+    setBasketCars(selected);
+  }, [basket, allCars]);
+
+  const handleDelete = (car: ICars) => {
+    dispatch(removeFromBasket(car.id));
   };
-
-  useEffect(() => {
-    async function getCarInBasket() {
-      await getCars("", setCars);
-    }
-    getCarInBasket();
-  }, []);
-
-  useEffect(() => {
-    const selectedCars = cars.filter((car) => basket.includes(car.id));
-    setBasketCars(selectedCars);
-    console.log(basketCars);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [basket, cars]);
 
   return (
     <section className="basket container">
       <div className="basket__header">
-        <Link to={"/"}>
+        <Link to="/">
           <button className="basket__back-btn">
             <span>
-              <img src={strLeft} alt="" />
+              <img src={strLeft} alt="Back" />
             </span>
             Back to Homepage
           </button>
         </Link>
         <h3>Basket</h3>
       </div>
+
       <div className="basket__main">
         {basketCars.length === 0 ? (
-          <h4>Basket Clear</h4>
+          <h4>Basket is Empty</h4>
         ) : (
           <ul>
-            {basketCars.map((cart) => (
-              <li className="basket__cart-item" key={cart.id}>
+            {basketCars.map((car) => (
+              <li className="basket__cart-item" key={car.id}>
                 <img
+                  src={car.urlPhoto}
+                  alt={car.name}
                   className="basket__cart-image"
-                  src={cart.urlPhoto}
-                  alt=""
                 />
-                <h5 className="basket__cart-name">{cart.name}</h5>
-                <h4 className="basket__cart-price">{cart.price}$</h4>
+                <h5 className="basket__cart-name">{car.name}</h5>
+                <h4 className="basket__cart-price">{car.price}$</h4>
                 <button
                   className="basket__cart-del"
-                  onClick={() => handleDelete(cart)}
+                  onClick={() => handleDelete(car)}
                 >
                   Delete from basket
                 </button>
@@ -71,9 +62,9 @@ const Basket = () => {
             ))}
             <div className="basket__cart-info">
               <div className="basket__cart-total">
-                Total Price : {totalPrice}$
+                Total Price: {totalPrice}$
               </div>
-              <Link to={"error"}>
+              <Link to="/error">
                 <button className="basket__cart-buy">Buy Now</button>
               </Link>
             </div>

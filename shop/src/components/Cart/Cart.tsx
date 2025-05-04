@@ -8,7 +8,7 @@ import { Modal } from "antd";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Store/store";
 import { useDispatch } from "react-redux";
-import { pushInBasket } from "../../Store/basket/basketSlice";
+import { pushInBasket } from "./../../Store/basket/basketSlice";
 import { removeFromBasket } from "../../Store/basket/basketSlice";
 
 const Cart = ({ el }: { el: ICars }) => {
@@ -16,7 +16,6 @@ const Cart = ({ el }: { el: ICars }) => {
 
   const dispatch = useDispatch();
   const [open, setOpen] = useState<boolean>(false);
-  console.log(basket);
 
   const showModal = () => {
     setOpen(true);
@@ -35,7 +34,6 @@ const Cart = ({ el }: { el: ICars }) => {
   };
   return (
     <div className="cart">
-      <h1>{basket}</h1>
       <div className="cart__header">
         <img className="cart__header-image" src={el.urlPhoto} alt="" />{" "}
       </div>

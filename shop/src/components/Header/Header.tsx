@@ -1,14 +1,11 @@
 import { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useState } from "react";
-import getCars from "../../getCarsFunc";
-import { ICars } from "../../Types/types";
 import { Navigation } from "swiper/modules";
 import { useRef } from "react";
 import strLeft from "./Icons/strLeft.svg";
 import strRight from "./Icons/strRight.svg";
 import basket from "./Icons/basket.png";
-
 import speed from "./Icons/speed.svg";
 import box from "./Icons/box.svg";
 
@@ -16,28 +13,32 @@ import React, { useMemo } from "react";
 import { notification } from "antd";
 import type { NotificationArgsProps } from "antd";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../Store/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Store/store";
+import { getHeaderCars } from "../../getCarsFunc";
+
 type NotificationPlacement = NotificationArgsProps["placement"];
 const Context = React.createContext({ name: "Default" });
 
 const Header: FC = () => {
   const contextValue = useMemo(() => ({ name: "Ant Design" }), []);
-  const [cars, setCars] = useState<ICars[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+
   const [submit, setSubmit] = useState<boolean>(false);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const headerCars = useSelector((state: RootState) => state.cars.header);
+  const status = useSelector((state: RootState) => state.cars.status);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
-  const headerLimit: string = "?page=1&limit=3";
-
   useEffect(() => {
-    async function stayImage() {
-      setLoading(true);
-      await getCars(headerLimit, setCars);
-      setLoading(false);
-    }
-    stayImage();
+    dispatch(getHeaderCars());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const [api, contextHolder] = notification.useNotification();
   const openNotification = (placement: NotificationPlacement) => {
     api.info({
@@ -57,11 +58,11 @@ const Header: FC = () => {
       <div className="header__main">
         <Swiper
           modules={[Navigation]}
-          spaceBetween={0} // Пространство между слайдами
-          slidesPerView={1} // Показывать 4 слайда
-          grabCursor={true} // Курсор захвата
-          centeredSlides={true} // Центрировать слайды
-          loop={false} // Включить бесконечный цикл
+          spaceBetween={0}
+          slidesPerView={1}
+          grabCursor
+          centeredSlides
+          loop={false}
           allowTouchMove={false}
           navigation={{
             prevEl: prevRef.current,
@@ -89,39 +90,38 @@ const Header: FC = () => {
               </button>
             </div>
           </div>
-          {loading ? (
+
+          {status === "loading" ? (
             <div className="header__loading-wrapper"></div>
           ) : (
-            <>
-              {cars.map((el, i) => (
-                <SwiperSlide
-                  key={i}
-                  className="header__main-swiper"
-                  style={{
-                    background: `url(${el.urlPhoto})`,
-                    width: "100vw",
-                  }}
-                >
-                  <div className="header__main-info">
-                    <div className="header__main-price">
-                      $
-                      {`${el.price.toString().slice(0, 2)},${el.price
-                        .toString()
-                        .slice(2)}`}
+            headerCars.map((el, i) => (
+              <SwiperSlide
+                key={i}
+                className="header__main-swiper"
+                style={{
+                  background: `url(${el.urlPhoto})`,
+                  width: "100vw",
+                }}
+              >
+                <div className="header__main-info">
+                  <div className="header__main-price">
+                    $
+                    {`${el.price.toString().slice(0, 2)},${el.price
+                      .toString()
+                      .slice(2)}`}
+                  </div>
+                  <div className="header__main-name">{el.name}</div>
+                  <div className="header__main-function">
+                    <div className="header__main-function__speed">
+                      <img src={speed} alt="" /> {el.acceleration}s
                     </div>
-                    <div className="header__main-name">{el.name}</div>
-                    <div className="header__main-function">
-                      <div className="header__main-function__speed">
-                        <img src={speed} alt="" /> {el.acceleration}s
-                      </div>
-                      <div className="header__main-function__box">
-                        <img src={box} alt="" /> automatic
-                      </div>
+                    <div className="header__main-function__box">
+                      <img src={box} alt="" /> automatic
                     </div>
                   </div>
-                </SwiperSlide>
-              ))}
-            </>
+                </div>
+              </SwiperSlide>
+            ))
           )}
 
           <div className="header__swiper-btns">
